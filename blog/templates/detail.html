@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<br>
+<br>
+<br>
+<style>
+    .allthing {
+        display: flex;
+    }
+    #aside {
+        margin-left: 50px;
+        margin-top: 20px;
+    }
+
+    .detail_title{
+        margin-top: 30px;
+        color:  #BC2C22;
+    }
+
+    .maintext {
+        color:  #BC2C22;
+
+    }
+
+    .subtext {
+        font-weight: 600;
+        font-size: 17px;
+        white-space: pre-wrap;
+    }
+
+</style>
+<div class="allthing">
+    <div id="section">
+        {%if blog.image %}
+        <p class="image"><img src = "{{blog.image.url}}" alt ="" width="600" height="400"></p>
+        {%endif%}
+
+        <div class="detail_title"><h3>{{blog.title}}</h3></div>
+        <div class="subtext">
+            작성자 ID:  {{blog.writer}}
+            날짜:  {{blog.pub_date}}
+        </div>
+        <br>
+        {%if blog.writer == user %}
+        <a href = "{% url 'delete' blog.id%}">삭제하기</a>
+        {%endif%}
+        <a href="{% url 'search' %}">돌아가기</a>
+    </div>
+
+    <div id="aside">
+        <div class="col-2-1">
+            <h5 class="maintext">사용된 재료</h5>
+            <div class="subtext">{{blog.checks}}</div>
+        </div>
+        <br>
+        <div class="col-2-2">
+            <h5 class="maintext">만드는 법</h5>
+            <div class="subtext">{{blog.body}}</div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
