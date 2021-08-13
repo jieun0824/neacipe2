@@ -43,7 +43,7 @@
             날짜:  {{blog.pub_date}}
         </div>
         <br>
-        {%if blog.writer == get_username %}
+        {%if blog.writer == user.get_username %}
         <a href = "{% url 'delete' blog.id%}">삭제하기</a>
         {%endif%}
         <a href="{% url 'search' %}">돌아가기</a>
